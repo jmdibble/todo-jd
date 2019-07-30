@@ -3,3 +3,8 @@
   font-size: 20px;
   text-align: center;
 }
+
+.ListItem {
+  align-items: center;
+  display: flex;
+}
