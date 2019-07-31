@@ -11,11 +11,17 @@ export default class AddItem extends Component {
     });
   };
 
+  handleSubmitClear = event => {
+    this.props.handleAddItem(event, this.state.text);
+    this.setState({ text: '' });
+  };
+
   render() {
-    console.log(this.state.text);
+    // console.log(this.state.text);
+    // console.log(this.props);
     return (
       <div>
-        <form>
+        <form onSubmit={event => this.handleSubmitClear(event)}>
           <input
             onChange={event => this.handleUpdateText(event)}
             placeholder='Add Item'

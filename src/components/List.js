@@ -5,9 +5,14 @@ import ListItem from './ListItem';
 const List = props => {
   return (
     <div>
-      <ListItem />
-      <ListItem />
-      <ListItem />
+      {props.items.map((item, index) => (
+        <ListItem
+          index={index}
+          deleteItem={props.deleteItem}
+          key={index}
+          item={item}
+        />
+      ))}
     </div>
   );
 };
