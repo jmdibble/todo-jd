@@ -20,17 +20,27 @@ export default class ToDoApp extends Component {
 
   handleStoreItem = () => {
     const items = this.state.items;
-    // console.log(JSON.stringify(items));
     localStorage.setItem('items', JSON.stringify(items));
   };
 
   deleteItem = index => {
-    this.setState({
-      items: this.state.items.filter((item, i) => {
-        return i !== index;
-      })
+    var arr = this.state.items;
+    console.log(arr);
+    arr.splice(index, 1);
+
+    this.setState({ items: arr }, () => {
+      localStorage.setItem('items', JSON.stringify(this.state.items));
     });
   };
+
+  componentDidMount() {
+    const items = localStorage.getItem('items');
+    const parsedList = JSON.parse(items);
+
+    this.setState({
+      items: parsedList
+    });
+  }
 
   render() {
     // console.log(this.state.items);
