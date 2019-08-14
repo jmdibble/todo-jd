@@ -7,6 +7,15 @@ export default class ToDoApp extends Component {
     items: []
   };
 
+  componentDidMount() {
+    const items = localStorage.getItem('items');
+    const parsedList = JSON.parse(items);
+
+    this.setState({
+      items: parsedList || []
+    });
+  }
+
   handleAddItem = (event, item) => {
     event.preventDefault();
     // console.log(item);
@@ -25,7 +34,6 @@ export default class ToDoApp extends Component {
 
   deleteItem = index => {
     var arr = this.state.items;
-    console.log(arr);
     arr.splice(index, 1);
 
     this.setState({ items: arr }, () => {
@@ -33,21 +41,10 @@ export default class ToDoApp extends Component {
     });
   };
 
-  componentDidMount() {
-    const items = localStorage.getItem('items');
-    const parsedList = JSON.parse(items);
-
-    this.setState({
-      items: parsedList
-    });
-  }
-
   render() {
     // console.log(this.state.items);
     // console.log(localStorage.getItem('items'));
-    console.log(this.state.items);
-    const data = localStorage.getItem('items');
-    console.log(data);
+    // console.log(this.state.items);
     return (
       <div className='ToDoApp'>
         <AddItem handleAddItem={this.handleAddItem} />
